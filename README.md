@@ -1,0 +1,1 @@
+Here is a complete, self-contained interactive lesson. Save the code below as section-3-1-quadratic-functions.html and open it in any browser — every graph, table, stepper, and quiz question is fully functional (no internet required except fonts).
