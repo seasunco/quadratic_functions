@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 3.1 — Quadratic Functions | Interactive Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#232741; --muted:#5b6178; --paper:#f4f5fb; --card:#ffffff; --line:#e3e6f2;
+  --primary:#4f46e5; --primary-dk:#3730a3; --violet:#7c3aed; --amber:#f59e0b;
+  --good:#059669; --bad:#e11d48; --teal:#0d9488; --sky:#0284c7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:16px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.25}
+section.sec{margin:58px 0;scroll-margin-top:96px}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(135deg,#312e81 0%,#4f46e5 55%,#7c3aed 100%);color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+.hero svg{position:absolute;right:-40px;bottom:-30px;opacity:.18}
+.hero .kicker{letter-spacing:.22em;font-size:.78rem;font-weight:700;text-transform:uppercase;color:#c7d2fe}
+.hero h1{font-size:clamp(2rem,4.5vw,3.1rem);margin:10px 0 12px}
+.hero p{max-width:720px;color:#e0e7ff;font-size:1.05rem}
+.hero .stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero .stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:7px 16px;border-radius:999px;font-size:.86rem;font-weight:600}
+
+/* ---------- NAV ---------- */
+nav.topnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 0}
+nav.topnav .wrap{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav.topnav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:.84rem;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid transparent;transition:.15s}
+nav.topnav a:hover{color:var(--primary);background:#eef0ff}
+nav.topnav a.on{background:var(--primary);color:#fff}
+
+/* ---------- SECTION HEADERS ---------- */
+.sechead{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.sechead .num{flex:0 0 48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem;box-shadow:0 6px 16px rgba(79,70,229,.35)}
+.sechead h2{font-size:clamp(1.4rem,2.6vw,1.85rem)}
+.sechead .objtag{color:var(--muted);font-size:.92rem;margin-top:2px}
+
+/* ---------- CARDS & CALLOUTS ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(30,34,80,.05);margin-bottom:18px}
+.card h3{font-size:1.15rem;margin-bottom:10px;color:var(--primary-dk)}
+.card p{margin-bottom:10px}
+.card ul,.card ol{margin:8px 0 12px 22px}
+.card li{margin-bottom:6px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g32{display:grid;grid-template-columns:3fr 2fr;gap:18px;align-items:start}
+@media(max-width:880px){.g2,.g32{grid-template-columns:1fr}}
+
+.callout{border-radius:12px;padding:16px 20px;margin:16px 0;border-left:5px solid}
+.callout h4{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;opacity:.72;margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:800}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.def{background:#eef0ff;border-color:var(--primary)}
+.ex{background:#fff7e6;border-color:var(--amber)}
+.note{background:#e6f6f3;border-color:var(--teal)}
+.warn{background:#fdeef2;border-color:var(--bad)}
+.formula{background:#f4efff;border-color:var(--violet);text-align:center;font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;padding:18px}
+.formula small{display:block;font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+
+.eq{font-family:Georgia,'Times New Roman',serif;font-size:1.12em}
+.tag{display:inline-block;background:#eef0ff;color:var(--primary);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+
+/* ---------- INTERACTIVES ---------- */
+canvas{width:100%;display:block;background:#fff;border:1px solid var(--line);border-radius:12px}
+#tCanvas{height:360px} #labCanvas{height:400px} #fCanvas{height:300px} #galleryCanvas{height:330px}
+.miniCv{height:150px}
+.srow{display:flex;align-items:center;gap:12px;margin:10px 0}
+.srow label{flex:0 0 190px;font-weight:600;font-size:.92rem}
+.srow input[type=range]{flex:1;accent-color:var(--primary);height:6px}
+.srow output{flex:0 0 52px;text-align:right;font-weight:800;color:var(--primary);font-family:Georgia,serif;font-size:1.05rem}
+.readout{background:linear-gradient(135deg,#eef0ff,#f4efff);border:1px solid #ddd6fe;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:.98rem}
+.readout .big-eq{font-family:Georgia,serif;font-size:1.45rem;font-weight:600;color:var(--primary-dk);display:block;margin-bottom:6px}
+.chips{margin-top:10px}
+.chip{display:inline-block;padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.83rem;font-weight:600;color:var(--primary);margin:4px 4px 0 0;transition:.15s;font-family:'Inter',sans-serif}
+.chip:hover{background:#eef0ff;border-color:var(--primary);transform:translateY(-1px)}
+.btn{display:inline-block;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;font-size:.9rem;padding:10px 20px;border-radius:10px;transition:.15s}
+.btn.primary{background:var(--primary);color:#fff}
+.btn.primary:hover{background:var(--primary-dk)}
+.btn.ghost{background:#eef0ff;color:var(--primary)}
+.btn:disabled{opacity:.4;cursor:default}
+.lg{display:inline-flex;align-items:center;gap:6px;font-size:.79rem;font-weight:600;color:var(--muted);margin:2px 14px 2px 0}
+.lg i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.statgrid{display:grid;grid-template-columns:1fr;gap:0}
+.statrow{display:flex;justify-content:space-between;gap:10px;padding:9px 4px;border-bottom:1px dashed var(--line);font-size:.93rem}
+.statrow:last-child{border-bottom:none}
+.statrow b{color:var(--primary-dk)}
+.statrow span:last-child{font-weight:700;text-align:right}
+
+/* tables */
+table.tbl{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+.tbl th{background:#eef0ff;color:var(--primary-dk);padding:9px 10px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.tbl td{padding:8px 10px;border-top:1px solid var(--line);text-align:center;font-family:Georgia,serif}
+tr.vxrow td{background:#fff3d6;font-weight:700}
+tr.pairA td{background:#f3efff}
+tr.pairB td{background:#e9f7f4}
+.discRow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+@media(max-width:720px){.discRow{grid-template-columns:1fr}}
+.discCase{text-align:center;font-size:.88rem}
+.discCase b{display:block;margin-top:6px}
+
+/* quick check */
+.qc{margin:16px 0}
+.qcbtn{background:#fff;border:1.5px dashed var(--teal);color:var(--teal);font-weight:700;font-family:'Inter',sans-serif;padding:9px 16px;border-radius:10px;cursor:pointer;font-size:.88rem}
+.qcbtn:hover{background:#e6f6f3}
+.qcpanel{display:none;margin-top:10px;background:#e6f6f3;border-radius:10px;padding:12px 16px;font-size:.93rem;border:1px solid #b8e5dc}
+.qcpanel.show{display:block}
+
+/* stepper */
+.stage{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.stage .stepEq{font-family:Georgia,serif;font-size:1.35rem;text-align:center;padding:16px 6px;color:var(--primary-dk);min-height:70px}
+.stage .stepTxt{font-size:.93rem;color:var(--muted);text-align:center}
+.dots{text-align:center;margin:12px 0}
+.dot{width:10px;height:10px;border-radius:50%;background:#d9dcea;display:inline-block;margin:0 4px;transition:.2s}
+.dot.on{background:var(--primary);transform:scale(1.25)}
+.stepCtl{display:flex;justify-content:center;gap:12px;align-items:center}
+.numIn{width:70px;padding:8px;border:1.5px solid var(--line);border-radius:8px;font-size:1rem;text-align:center;font-family:Georgia,serif}
+
+/* quiz */
+.qcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(30,34,80,.04)}
+.qhead{display:flex;justify-content:space-between;margin-bottom:8px}
+.qnum{background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;font-size:.75rem;font-weight:800;padding:4px 12px;border-radius:999px}
+.qtext{font-weight:600;margin-bottom:10px;font-size:1rem}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fafbff;margin:8px 0;cursor:pointer;font-size:.94rem;font-family:'Inter',sans-serif;transition:.15s;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--primary);background:#eef0ff}
+.opt.right{border-color:var(--good);background:#e7f6ef;font-weight:700}
+.opt.wrong{border-color:var(--bad);background:#fdeef2}
+.opt:disabled{cursor:default}
+.letter{flex:0 0 28px;height:28px;border-radius:8px;background:#eef0ff;color:var(--primary);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.opt.right .letter{background:var(--good);color:#fff}
+.opt.wrong .letter{background:var(--bad);color:#fff}
+.qexp{margin-top:12px;padding:13px 16px;border-radius:10px;background:#f4efff;border:1px solid #ddd0fb;font-size:.92rem;line-height:1.6}
+.bar{height:10px;background:#e3e6f0;border-radius:999px;overflow:hidden;margin:10px 0}
+.barfill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--violet));transition:width .4s}
+.finalcard{text-align:center;background:linear-gradient(135deg,#312e81,#7c3aed);color:#fff;border-radius:16px;padding:34px;margin-top:10px}
+.finalcard .big{font-size:3rem;font-weight:800;font-family:'Fraunces',serif}
+.finalcard p{margin:8px 0 18px}
+
+.objgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.objcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.9rem;display:flex;gap:10px;align-items:flex-start}
+.objcard .ck{color:var(--good);font-weight:800;font-size:1.1rem}
+footer{padding:36px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:60px}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <svg width="480" height="300" viewBox="0 0 480 300"><path d="M20 290 Q240 -260 460 290" stroke="#fff" stroke-width="6" fill="none"/><path d="M90 290 Q240 -90 390 290" stroke="#fff" stroke-width="4" fill="none"/></svg>
+  <div class="wrap">
+    <div class="kicker">College Algebra · Interactive Study Guide</div>
+    <h1>Section 3.1 — Quadratic Functions</h1>
+    <p>Master parabolas from the ground up: definitions, transformations, standard form, vertex &amp; intercepts, graphing strategy, and real-world maximum/minimum problems — with live graphs you control.</p>
+    <div class="stats">
+      <span class="stat">✔ 7 Lesson Objectives</span>
+      <span class="stat">🎛 4 Interactive Labs</span>
+      <span class="stat">📊 Live Table of Values</span>
+      <span class="stat">🏆 10-Question Challenge</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav class="topnav">
+  <div class="wrap">
+    <a href="#objectives">Objectives</a>
+    <a href="#s1">1 · Definition</a>
+    <a href="#s2">2 · Transformations</a>
+    <a href="#s3">3 · Standard Form</a>
+    <a href="#s4">4 · Vertex &amp; Axis</a>
+    <a href="#s5">5 · Intercepts</a>
+    <a href="#s6">6 · Graphing Lab</a>
+    <a href="#s7">7 · Max / Min</a>
+    <a href="#quiz">🏆 Challenge</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= OBJECTIVES ================= -->
+<section class="sec" id="objectives">
+  <div class="sechead"><div class="num">🎯</div><div><h2>Lesson Objectives</h2><p class="objtag">By the end of this lesson you will be able to…</p></div></div>
+  <div class="objgrid">
+    <div class="objcard"><span class="ck">✔</span> Define a quadratic function and identify its parts.</div>
+    <div class="objcard"><span class="ck">✔</span> Graph a quadratic function through transformations of the parent <span class="eq">f(x) = x²</span>.</div>
+    <div class="objcard"><span class="ck">✔</span> Change a quadratic function from general form to standard form (completing the square).</div>
+    <div class="objcard"><span class="ck">✔</span> Find the vertex and axis of symmetry of a quadratic function.</div>
+    <div class="objcard"><span class="ck">✔</span> Find the x- and y-intercepts of a quadratic function.</div>
+    <div class="objcard"><span class="ck">✔</span> Graph a quadratic function using the vertex, axis of symmetry, and intercepts.</div>
+    <div class="objcard"><span class="ck">✔</span> Solve applications requiring a maximum or minimum value.</div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>🗺 How to use this guide</h3>
+    <ol>
+      <li>Read each section <b>in order</b> — each idea builds on the previous one.</li>
+      <li><b>Touch everything.</b> Drag sliders, press preset chips, and step through the algebra. The graphs respond instantly.</li>
+      <li>Answer every <b>Quick Check</b> before revealing the solution.</li>
+      <li>Finish with the <b>10-Question Challenge</b> to test yourself. Aim for 8+.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 : DEFINITION ================= -->
+<section class="sec" id="s1">
+  <div class="sechead"><div class="num">1</div><div><h2>What Is a Quadratic Function?</h2><p class="objtag">Objective: Define the quadratic function</p></div></div>
+
+  <div class="card">
+    <div class="callout def">
+      <h4>Definition</h4>
+      <p>A <b>quadratic function</b> is a polynomial function that can be written in the form</p>
+      <div class="formula"><small>General (polynomial) form</small>f(x) = ax² + bx + c,&nbsp;&nbsp; where a ≠ 0</div>
+      <p>The constants <b>a</b>, <b>b</b>, and <b>c</b> are real numbers called <b>coefficients</b>. The requirement <b>a ≠ 0</b> is essential — if <span class="eq">a = 0</span>, the <span class="eq">x²</span> term disappears and the function is no longer quadratic.</p>
+    </div>
+
+    <ul>
+      <li><b>Leading coefficient:</b> <span class="eq">a</span> — it controls the direction and width of the graph.</li>
+      <li><b>Degree:</b> the highest power of <span class="eq">x</span> is exactly <b>2</b>.</li>
+      <li><b>Graph:</b> every quadratic function graphs as a U-shaped curve called a <b>parabola</b>.</li>
+      <li><b>Domain:</b> all real numbers, <span class="eq">(−∞, ∞)</span> — you may plug in any <span class="eq">x</span>.</li>
+    </ul>
+
+    <div class="callout ex">
+      <h4>Example 1 — Identify the coefficients</h4>
+      <p>For <span class="eq">f(x) = −3x² + 7x − 2</span>: &nbsp; <b>a = −3</b>, <b>b = 7</b>, <b>c = −2</b>. Since <span class="eq">a &lt; 0</span>, its parabola opens <b>downward</b>.</p>
+      <p>For <span class="eq">g(x) = x² − 9</span>: &nbsp; <b>a = 1</b>, <b>b = 0</b>, <b>c = −9</b>. (A missing term just means its coefficient is 0.)</p>
+    </div>
+
+    <div class="callout note">
+      <h4>Two forms you must know</h4>
+      <p><b>General form:</b> <span class="eq">f(x) = ax² + bx + c</span> → great for finding the <b>y-intercept</b> (it's just <span class="eq">c</span>).</p>
+      <p><b>Standard (vertex) form:</b> <span class="eq">f(x) = a(x − h)² + k</span> → great for reading the <b>vertex (h, k)</b> directly.</p>
+      <p>Both describe the <i>same</i> parabola — Section 3 shows how to convert between them.</p>
+    </div>
+
+    <h3>Meet the family of parabolas</h3>
+    <p>The sign of <span class="eq">a</span> decides whether the parabola opens <b>up</b> (∪, has a lowest point) or <b>down</b> (∩, has a highest point). The size of <span class="eq">|a|</span> decides its width.</p>
+    <canvas id="galleryCanvas"></canvas>
+    <div style="margin-top:8px">
+      <span class="lg"><i style="background:#4f46e5"></i>y = x² (a = 1)</span>
+      <span class="lg"><i style="background:#0d9488"></i>y = 0.4x² (wider: |a| &lt; 1)</span>
+      <span class="lg"><i style="background:#e11d48"></i>y = −x² + 4 (opens down: a &lt; 0)</span>
+    </div>
+
+    <div class="qc">
+      <button class="qcbtn" onclick="this.nextElementSibling.classList.toggle('show')">🤔 Quick Check — is g(x) = 5x − 3x² + x⁴ a quadratic function?</button>
+      <div class="qcpanel"><b>No.</b> Its highest power is 4, so it is a <i>quartic</i> (degree-4) polynomial. A quadratic must have degree <b>exactly</b> 2 — the <span class="eq">x²</span> term must be the highest power present.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 : TRANSFORMATIONS ================= -->
+<section class="sec" id="s2">
+  <div class="sechead"><div class="num">2</div><div><h2>Graphing by Transforming the Parent f(x) = x²</h2><p class="objtag">Objective: Graph a quadratic function through transformations of f(x) = x²</p></div></div>
+
+  <div class="card">
+    <p>The simplest quadratic function, <span class="eq">f(x) = x²</span>, is called the <b>parent function</b>. Its graph is a parabola with vertex at the origin, opening upward. Every other quadratic function is the parent after a sequence of <b>transformations</b>:</p>
+    <div class="formula"><small>Standard (transformation) form</small>f(x) = a(x − h)² + k</div>
+    <table class="tbl">
+      <tr><th>Piece</th><th>Effect on the graph of x²</th></tr>
+      <tr><td class="eq">+ k outside</td><td>Shift <b>up</b> k units (down if k is negative) → moves the vertex vertically</td></tr>
+      <tr><td class="eq">(x − h) inside</td><td>Shift <b>right</b> h units — <b>opposite</b> of what it looks like! <span class="eq">(x+4)²</span> shifts <b>left</b> 4</td></tr>
+      <tr><td class="eq">a &lt; 0</td><td><b>Reflect</b> across the x-axis (opens downward)</td></tr>
+      <tr><td class="eq">|a| &gt; 1</td><td>Vertical <b>stretch</b> — parabola looks narrower</td></tr>
+      <tr><td class="eq">0 &lt; |a| &lt; 1</td><td>Vertical <b>compression</b> — parabola looks wider</td></tr>
+    </table>
+    <p style="margin-top:10px">The point <b>(h, k)</b> is the <b>vertex</b>, and the vertical line <b>x = h</b> is the <b>axis of symmetry</b>.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Interactive Lab 1</span>
+    <h3>🎛 Transformation Explorer — f(x) = a(x − h)² + k</h3>
+    <p>Drag the sliders and watch the dashed <b>parent curve</b> <span class="eq">y = x²</span> get shifted, reflected, and stretched into your new parabola.</p>
+    <div class="srow"><label>a — reflect / stretch:</label><input type="range" id="ta" min="-3" max="3" step="0.5" value="1"><output id="taOut">1</output></div>
+    <div class="srow"><label>h — horizontal shift:</label><input type="range" id="th" min="-5" max="5" step="1" value="0"><output id="thOut">0</output></div>
+    <div class="srow"><label>k — vertical shift:</label><input type="range" id="tk" min="-6" max="6" step="1" value="0"><output id="tkOut">0</output></div>
+    <div class="chips">
+      <button class="chip" onclick="setT(1,0,0)">parent x²</button>
+      <button class="chip" onclick="setT(1,2,-3)">(x−2)²−3</button>
+      <button class="chip" onclick="setT(-1,-3,4)">−(x+3)²+4</button>
+      <button class="chip" onclick="setT(0.5,1,2)">½(x−1)²+2</button>
+      <button class="chip" onclick="setT(2,0,-4)">2x²−4</button>
+    </div>
+    <div class="readout"><span class="big-eq" id="tEq">f(x) = x²</span><span id="tInfo"></span></div>
+    <canvas id="tCanvas" style="margin-top:14px"></canvas>
+    <div style="margin-top:8px">
+      <span class="lg"><i style="background:#b9c0d9"></i>parent y = x²</span>
+      <span class="lg"><i style="background:#4f46e5"></i>your function</span>
+      <span class="lg"><i style="background:#e11d48"></i>vertex (h, k)</span>
+      <span class="lg"><i style="background:#f59e0b"></i>axis x = h</span>
+      <span class="lg"><i style="background:#059669"></i>y-intercept</span>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 2 — Read transformations from an equation</h4>
+      <p>Graph <span class="eq">f(x) = −(x + 3)² + 4</span> starting from <span class="eq">y = x²</span>:</p>
+      <ol>
+        <li><b>h = −3</b> (because x + 3 = x − (−3)) → shift <b>left 3</b>.</li>
+        <li><b>k = 4</b> → shift <b>up 4</b>. Vertex is now <b>(−3, 4)</b>.</li>
+        <li><b>a = −1</b> → reflect across the x-axis; opens <b>downward</b>, same width.</li>
+      </ol>
+      <p>Press the preset chip <b>−(x+3)²+4</b> above to confirm your mental picture!</p>
+    </div>
+
+    <div class="qc">
+      <button class="qcbtn" onclick="this.nextElementSibling.classList.toggle('show')">🤔 Quick Check — predict the vertex of f(x) = (x + 5)² − 7 before touching the sliders.</button>
+      <div class="qcpanel">Vertex = <b>(−5, −7)</b>. The inside says x + 5, so h = −5 (left 5); the outside constant is −7, so k = −7 (down 7). Verify with the sliders: set h = −5, k = −7, a = 1.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 : GENERAL TO STANDARD ================= -->
+<section class="sec" id="s3">
+  <div class="sechead"><div class="num">3</div><div><h2>From General Form to Standard Form</h2><p class="objtag">Objective: Convert ax² + bx + c into a(x − h)² + k by completing the square</p></div></div>
+
+  <div class="card">
+    <p>To convert <span class="eq">f(x) = ax² + bx + c</span> into standard form we use a technique called <b>completing the square</b>. The goal: create a <b>perfect square trinomial</b> <span class="eq">x² + px + (p/2)²</span>, which factors as <span class="eq">(x + p/2)²</span>.</p>
+    <div class="callout note">
+      <h4>The recipe</h4>
+      <ol>
+        <li>Factor <b>a</b> out of the <span class="eq">x²</span> and <span class="eq">x</span> terms only.</li>
+        <li>Take <b>half</b> of the x-coefficient inside the parentheses, then <b>square</b> it.</li>
+        <li><b>Add and subtract</b> that number inside (net change = 0 — legal!).</li>
+        <li>Factor the perfect square; distribute <b>a</b> to the subtracted term.</li>
+        <li>Combine constants → you now have <span class="eq">a(x − h)² + k</span>.</li>
+      </ol>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 3 — Worked by hand</h4>
+      <p>Convert <span class="eq">f(x) = 2x² + 12x + 7</span> to standard form:</p>
+      <p class="eq">f(x) = 2(x² + 6x) + 7&nbsp;&nbsp;&nbsp;<small>(factor 2 from x-terms)</small></p>
+      <p class="eq">half of 6 = 3, and 3² = 9</p>
+      <p class="eq">f(x) = 2(x² + 6x + 9 − 9) + 7</p>
+      <p class="eq">f(x) = 2((x + 3)² − 9) + 7</p>
+      <p class="eq">f(x) = 2(x + 3)² − 18 + 7</p>
+      <p class="eq"><b>f(x) = 2(x + 3)² − 11</b>&nbsp;&nbsp;→ vertex (−3, −11)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag">Interactive Lab 2</span>
+    <h3>🎛 Step-by-Step: Completing the Square</h3>
+    <p>Choose any quadratic and click through the conversion one move at a time.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <span>a =</span><input class="numIn" type="number" id="ctsA" value="1">
+      <span>b =</span><input class="numIn" type="number" id="ctsB" value="6">
+      <span>c =</span><input class="numIn" type="number" id="ctsC" value="5">
+      <button class="btn primary" onclick="buildCTS()">Build Steps →</button>
+    </div>
+    <div class="chips">
+      <button class="chip" onclick="setCTS(1,6,5)">x²+6x+5</button>
+      <button class="chip" onclick="setCTS(2,12,7)">2x²+12x+7</button>
+      <button class="chip" onclick="setCTS(1,-4,1)">x²−4x+1</button>
+      <button class="chip" onclick="setCTS(-1,6,-2)">−x²+6x−2</button>
+      <button class="chip" onclick="setCTS(1,8,10)">x²+8x+10</button>
+    </div>
+    <div class="stage" style="margin-top:14px">
+      <div class="stepTxt" id="ctsTitle"></div>
+      <div class="stepEq" id="ctsEq"></div>
+      <div class="dots" id="ctsDots"></div>
+      <div class="stepCtl">
+        <button class="btn ghost" id="ctsPrev" onclick="ctsIdx=Math.max(0,ctsIdx-1);renderCTS()">← Previous</button>
+        <span id="ctsCount" style="font-size:.85rem;font-weight:700;color:var(--muted)"></span>
+        <button class="btn primary" id="ctsNext" onclick="ctsIdx=Math.min(ctsArr.length-1,ctsIdx+1);renderCTS()">Next →</button>
+      </div>
+    </div>
+    <div class="callout note" style="margin-top:16px">
+      <h4>Shortcut check</h4>
+      <p>Once you finish, verify: <span class="eq">h = −b/(2a)</span> and <span class="eq">k = f(h)</span>. (That formula is the star of Section 4.)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 4 : VERTEX & AXIS ================= -->
+<section class="sec" id="s4">
+  <div class="sechead"><div class="num">4</div><div><h2>Vertex &amp; Axis of Symmetry</h2><p class="objtag">Objective: Find the vertex and axis of symmetry of a quadratic function</p></div></div>
+
+  <div class="card">
+    <div class="callout def">
+      <h4>Key vocabulary</h4>
+      <p>The <b>vertex</b> is the turning point of the parabola — its lowest point if it opens up, its highest point if it opens down. The <b>axis of symmetry</b> is the vertical line through the vertex that folds the parabola onto itself.</p>
+    </div>
+    <div class="formula"><small>From general form f(x) = ax² + bx + c</small>
+      Axis of symmetry: &nbsp;x = −b / (2a)&nbsp;&nbsp;&nbsp;&nbsp; Vertex: &nbsp;( h, f(h) ) where h = −b / (2a)
+    </div>
+    <div class="formula"><small>From standard form f(x) = a(x − h)² + k</small>
+      Vertex = (h, k) &nbsp;&nbsp;·&nbsp;&nbsp; Axis: x = h &nbsp;&nbsp;<small style="font-family:Inter">(just read them off!)</small>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 4 — From general form</h4>
+      <p>Find the vertex and axis of <span class="eq">f(x) = 3x² − 12x + 1</span>.</p>
+      <ol>
+        <li>a = 3, b = −12 → <span class="eq">h = −b/(2a) = 12/6 = 2</span>. Axis: <b>x = 2</b>.</li>
+        <li><span class="eq">k = f(2) = 3(4) − 12(2) + 1 = 12 − 24 + 1 = −11</span>.</li>
+        <li>Vertex = <b>(2, −11)</b>. Since a = 3 &gt; 0, this is the <b>minimum</b> point.</li>
+      </ol>
+      <button class="chip" onclick="loadLab(3,-12,1)">🔍 Load f(x) = 3x² − 12x + 1 into the Graph Lab</button>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 5 — From standard form</h4>
+      <p>For <span class="eq">f(x) = −2(x + 1)² + 8</span>: vertex = <b>(−1, 8)</b>, axis = <b>x = −1</b>, opens <b>downward</b>, so 8 is the <b>maximum</b> value.</p>
+    </div>
+
+    <div class="qc">
+      <button class="qcbtn" onclick="this.nextElementSibling.classList.toggle('show')">🤔 Quick Check — find the vertex of f(x) = x² + 2x − 8.</button>
+      <div class="qcpanel">h = −2/(2·1) = −1. k = f(−1) = 1 − 2 − 8 = −9. Vertex <b>(−1, −9)</b>, axis x = −1, opens up → minimum value −9.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 5 : INTERCEPTS ================= -->
+<section class="sec" id="s5">
+  <div class="sechead"><div class="num">5</div><div><h2>Finding the Intercepts</h2><p class="objtag">Objective: Find the x- and y-intercepts of a quadratic function</p></div></div>
+
+  <div class="card">
+    <div class="g2">
+      <div class="callout def">
+        <h4>y-intercept (always exactly one)</h4>
+        <p>Set <b>x = 0</b>: &nbsp;f(0) = a·0 + b·0 + c = <b>c</b>.</p>
+        <p>The y-intercept is always <b>(0, c)</b>. In general form it is literally the constant term.</p>
+      </div>
+      <div class="callout def">
+        <h4>x-intercepts (0, 1, or 2)</h4>
+        <p>Set <b>f(x) = 0</b> and solve <span class="eq">ax² + bx + c = 0</span> by factoring or the Quadratic Formula:</p>
+        <p class="eq" style="text-align:center">x = ( −b ± √(b² − 4ac) ) / (2a)</p>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <h4>The discriminant Δ = b² − 4ac tells you how many x-intercepts to expect</h4>
+      <p><b>Δ &gt; 0</b> → two x-intercepts · <b>Δ = 0</b> → one (vertex touches the axis) · <b>Δ &lt; 0</b> → none (parabola never reaches the x-axis).</p>
+    </div>
+    <div class="discRow">
+      <div class="discCase"><canvas id="dC1" class="miniCv"></canvas><b>Δ &gt; 0 : two intercepts</b><span style="color:var(--muted);font-size:.8rem">y = x² − 4 → x = ±2</span></div>
+      <div class="discCase"><canvas id="dC2" class="miniCv"></canvas><b>Δ = 0 : one intercept</b><span style="color:var(--muted);font-size:.8rem">y = (x−2)² → x = 2</span></div>
+      <div class="discCase"><canvas id="dC3" class="miniCv"></canvas><b>Δ &lt; 0 : no intercepts</b><span style="color:var(--muted);font-size:.8rem">y = x² + 3</span></div>
+    </div>
+
+    <div class="callout ex" style="margin-top:18px">
+      <h4>Example 6 — Intercepts of f(x) = x² − 5x + 6</h4>
+      <ul>
+        <li><b>y-intercept:</b> c = 6 → <b>(0, 6)</b>.</li>
+        <li><b>x-intercepts:</b> 0 = x² − 5x + 6 = (x − 2)(x − 3) → <b>(2, 0)</b> and <b>(3, 0)</b>.</li>
+        <li>Check: Δ = 25 − 24 = 1 &gt; 0 → two intercepts, as expected.</li>
+      </ul>
+      <button class="chip" onclick="loadLab(1,-5,6)">🔍 Load into the Graph Lab</button>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 7 — When factoring fails, use the formula</h4>
+      <p>For <span class="eq">f(x) = x² + 4x + 7</span>: Δ = 16 − 28 = <b>−12 &lt; 0</b> → <b>no x-intercepts</b>. The whole parabola floats above the x-axis.</p>
+      <button class="chip" onclick="loadLab(1,4,7)">🔍 Load into the Graph Lab</button>
+    </div>
+
+    <div class="qc">
+      <button class="qcbtn" onclick="this.nextElementSibling.classList.toggle('show')">🤔 Quick Check — find all intercepts of f(x) = x² + 2x − 8.</button>
+      <div class="qcpanel">y-intercept: (0, −8). x-intercepts: 0 = (x + 4)(x − 2) → (−4, 0) and (2, 0).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 6 : GRAPHING LAB ================= -->
+<section class="sec" id="s6">
+  <div class="sechead"><div class="num">6</div><div><h2>Graphing with Vertex, Axis &amp; Intercepts</h2><p class="objtag">Objective: Graph a quadratic function using its key features</p></div></div>
+
+  <div class="card">
+    <div class="callout note">
+      <h4>The 5-step graphing strategy</h4>
+      <ol>
+        <li><b>Direction:</b> a &gt; 0 opens up ∪; a &lt; 0 opens down ∩.</li>
+        <li><b>Axis of symmetry:</b> compute x = −b/(2a).</li>
+        <li><b>Vertex:</b> evaluate f at that x → plot (h, k).</li>
+        <li><b>Intercepts:</b> plot y-int (0, c); solve f(x) = 0 for x-ints (if any).</li>
+        <li><b>Reflect &amp; connect:</b> mirror points across the axis using symmetry, then draw a smooth parabola.</li>
+      </ol>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 8 — Full walkthrough: f(x) = x² − 4x − 5</h4>
+      <ol>
+        <li>a = 1 &gt; 0 → opens <b>upward</b>.</li>
+        <li>Axis: x = −(−4)/(2·1) = <b>2</b>.</li>
+        <li>Vertex: f(2) = 4 − 8 − 5 = <b>−9</b> → <b>(2, −9)</b>.</li>
+        <li>y-int: <b>(0, −5)</b>. x-ints: 0 = (x − 5)(x + 1) → <b>(−1, 0), (5, 0)</b>.</li>
+        <li>Notice (0, −5) reflects across x = 2 to the point (4, −5). Connect smoothly.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag">Interactive Lab 3 · centerpiece</span>
+    <h3>🎛 Quadratic Function Lab — graph, analysis &amp; symmetry table</h3>
+    <p>Set <b>a, b, c</b> and the lab instantly graphs the parabola <i>and</i> computes every feature. The table builds itself symmetrically around the vertex so you can <b>see</b> the axis of symmetry at work.</p>
+
+    <div class="g32">
+      <div>
+        <div class="srow"><label>a (direction / width):</label><input type="range" id="la" min="-3" max="3" step="0.5" value="1"><output id="laOut">1</output></div>
+        <div class="srow"><label>b:</label><input type="range" id="lb" min="-10" max="10" step="1" value="-4"><output id="lbOut">−4</output></div>
+        <div class="srow"><label>c (y-intercept):</label><input type="range" id="lc" min="-10" max="10" step="1" value="-5"><output id="lcOut">−5</output></div>
+        <div class="chips">
+          <button class="chip" onclick="setLab(1,-4,-5)">x²−4x−5</button>
+          <button class="chip" onclick="setLab(-1,2,8)">−x²+2x+8</button>
+          <button class="chip" onclick="setLab(2,-8,6)">2x²−8x+6</button>
+          <button class="chip" onclick="setLab(1,4,7)">x²+4x+7 (Δ&lt;0)</button>
+          <button class="chip" onclick="setLab(0.5,-2,-4)">½x²−2x−4</button>
+          <button class="chip" onclick="setLab(1,-6,9)">x²−6x+9 (Δ=0)</button>
+        </div>
+        <div class="warn callout" id="labWarn" hidden><b>⚠ a = 0:</b> the x² term vanishes — this is a <i>linear</i> function, not a quadratic. Quadratics require a ≠ 0. Drag a away from 0!</div>
+      </div>
+      <div class="statgrid card" style="margin:0;background:#fafbff">
+        <div class="statrow"><b>Function</b><span id="labEq" style="font-family:Georgia"></span></div>
+        <div class="statrow"><b>Standard form</b><span id="labVF" style="font-family:Georgia;font-size:.86rem"></span></div>
+        <div class="statrow"><b>Opens</b><span id="stDir"></span></div>
+        <div class="statrow"><b>Vertex</b><span id="stVertex"></span></div>
+        <div class="statrow"><b>Axis of symmetry</b><span id="stAxis"></span></div>
+        <div class="statrow"><b>y-intercept</b><span id="stYint"></span></div>
+        <div class="statrow"><b>x-intercepts</b><span id="stXint"></span></div>
+        <div class="statrow"><b>Discriminant Δ</b><span id="stDisc"></span></div>
+        <div class="statrow"><b>Extremum</b><span id="stExt"></span></div>
+      </div>
+    </div>
+
+    <canvas id="labCanvas" style="margin-top:18px"></canvas>
+    <div style="margin-top:8px">
+      <span class="lg"><i style="background:#4f46e5"></i>f(x)</span>
+      <span class="lg"><i style="background:#e11d48"></i>vertex</span>
+      <span class="lg"><i style="background:#f59e0b"></i>axis of symmetry</span>
+      <span class="lg"><i style="background:#059669"></i>y-intercept</span>
+      <span class="lg"><i style="background:#7c3aed"></i>x-intercepts</span>
+    </div>
+
+    <div class="g2" style="margin-top:18px">
+      <div>
+        <h3>📊 Interactive Table of Values (built around the vertex)</h3>
+        <p style="font-size:.9rem;color:var(--muted)">x-values march outward from the vertex in equal steps. Matched colors sit the same distance from the axis — and always share a y-value. That's symmetry!</p>
+        <label style="font-size:.85rem;font-weight:700">Step size:
+          <select id="labStep" class="numIn" style="width:80px" onchange="updateLab()">
+            <option value="0.5">0.5</option><option value="1" selected>1</option><option value="2">2</option>
+          </select>
+        </label>
+        <table class="tbl" id="labTable" style="margin-top:10px"></table>
+        <p id="tblNote" style="font-size:.85rem;color:var(--teal);font-weight:600;margin-top:8px"></p>
+      </div>
+      <div>
+        <h3>🧭 Reading the table like a mathematician</h3>
+        <ul>
+          <li>The highlighted <b>gold row</b> is the vertex — the turning point.</li>
+          <li>y-values <b>decrease</b> toward the vertex when a &gt; 0, then increase again (increase → decrease when a &lt; 0).</li>
+          <li>The y-values change by <b>odd multiples of a</b> as you move one step at a time (for step 1: differences grow by 2a each row) — a signature of quadratics.</li>
+          <li>Two equal y-values in different rows? Their x-values average to <b>h</b> — you've found the axis of symmetry from data alone!</li>
+        </ul>
+        <div class="callout note" style="margin-top:6px">
+          <h4>Study tip</h4>
+          <p>On exams without a graphing tool, sketch a 5-point table symmetric about the vertex — it is the fastest reliable way to draw an accurate parabola.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 7 : MAX / MIN ================= -->
+<section class="sec" id="s7">
+  <div class="sechead"><div class="num">7</div><div><h2>Maximum &amp; Minimum Applications</h2><p class="objtag">Objective: Solve applications requiring a maximum or minimum value</p></div></div>
+
+  <div class="card">
+    <div class="callout def">
+      <h4>The big idea</h4>
+      <p>The <b>vertex</b> is where a quadratic reaches its extreme value:</p>
+      <ul>
+        <li><b>a &gt; 0</b> → parabola opens up → vertex is the <b>minimum</b>; minimum value = <b>k = f(h)</b>.</li>
+        <li><b>a &lt; 0</b> → parabola opens down → vertex is the <b>maximum</b>; maximum value = <b>k = f(h)</b>.</li>
+      </ul>
+      <p>Remember: <b>h tells you WHEN/WHERE</b> it happens; <b>k tells you HOW MUCH</b>. Read the question carefully!</p>
+    </div>
+
+    <div class="callout note">
+      <h4>Strategy for word problems</h4>
+      <ol>
+        <li>Identify the quantity to maximize/minimize and write it as a quadratic in one variable.</li>
+        <li>Check the sign of <b>a</b> to confirm you really have a max (a &lt; 0) or min (a &gt; 0).</li>
+        <li>Compute <b>h = −b/(2a)</b> → the optimal input.</li>
+        <li>Evaluate <b>f(h)</b> → the optimal value. Answer the actual question asked, with units.</li>
+      </ol>
+    </div>
+
+    <div class="callout ex">
+      <h4>Example 9 — The river fencing problem</h4>
+      <p>A farmer has <b>200 ft of fencing</b> to enclose three sides of a rectangular pen (the river forms the fourth side). What dimensions maximize the area?</p>
+      <ol>
+        <li>If each width is x, the length is 200 − 2x. Area: <span class="eq">A(x) = x(200 − 2x) = −2x² + 200x</span>.</li>
+        <li>a = −2 &lt; 0 → the vertex is a <b>maximum</b>. ✔</li>
+        <li><span class="eq">x = −b/(2a) = −200/(2·(−2)) = 50</span> ft.</li>
+        <li>Length = 200 − 2(50) = 100 ft. Maximum area = <b>A(50) = 50·100 = 5000 ft²</b>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag">Interactive Lab 4</span>
+    <h3>🎛 Explore the fencing problem yourself</h3>
+    <p>Slide <b>x</b> to choose the width. The point traces the area curve — find the peak!</p>
+    <div class="srow"><label>width x (ft):</label><input type="range" id="fx" min="0" max="100" step="1" value="30"><output id="fxOut">30</output></div>
+    <div class="readout"><b>Current pen:</b> <span id="fDims"></span> &nbsp;→&nbsp; <b>Area = <span id="fArea"></span></b> &nbsp;·&nbsp; Maximum possible: <b>5000 ft² at x = 50 ft</b></div>
+    <canvas id="fCanvas" style="margin-top:14px"></canvas>
+
+    <div class="callout ex" style="margin-top:18px">
+      <h4>Example 10 — Projectile motion</h4>
+      <p>A ball is thrown upward from a height of 80 ft with initial velocity 64 ft/s: <span class="eq">h(t) = −16t² + 64t + 80</span>.</p>
+      <ol>
+        <li>a = −16 &lt; 0 → vertex = <b>maximum height</b>.</li>
+        <li>Time of max height: <span class="eq">t = −64/(2·(−16)) = 2</span> seconds.</li>
+        <li>Max height: <span class="eq">h(2) = −16(4) + 64(2) + 80 = −64 + 128 + 80 = <b>144 ft</b></span>.</li>
+      </ol>
+      <p>(c = 80 is the starting height — the y-intercept has physical meaning too!)</p>
+    </div>
+
+    <div class="qc">
+      <button class="qcbtn" onclick="this.nextElementSibling.classList.toggle('show')">🤔 Quick Check — does f(x) = 4x² − 16x + 9 have a maximum or minimum? What is it?</button>
+      <div class="qcpanel">a = 4 &gt; 0 → <b>minimum</b>. h = 16/8 = 2; f(2) = 16 − 32 + 9 = <b>−7</b>. Minimum value −7 at x = 2.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SUMMARY ================= -->
+<section class="sec" id="summary">
+  <div class="sechead"><div class="num">📌</div><div><h2>Formula Sheet — Keep This in Your Head</h2></div></div>
+  <div class="card">
+    <table class="tbl">
+      <tr><th>Concept</th><th>Formula / Rule</th></tr>
+      <tr><td>General form</td><td class="eq">f(x) = ax² + bx + c, a ≠ 0</td></tr>
+      <tr><td>Standard form</td><td class="eq">f(x) = a(x − h)² + k</td></tr>
+      <tr><td>Vertex (general form)</td><td class="eq">h = −b/(2a), k = f(h)</td></tr>
+      <tr><td>Axis of symmetry</td><td class="eq">x = −b/(2a)</td></tr>
+      <tr><td>y-intercept</td><td class="eq">(0, c)</td></tr>
+      <tr><td>x-intercepts</td><td class="eq">solve ax² + bx + c = 0 → x = (−b ± √(b²−4ac)) / 2a</td></tr>
+      <tr><td>Discriminant</td><td class="eq">Δ = b² − 4ac → 2 / 1 / 0 intercepts if Δ &gt; 0 / = 0 / &lt; 0</td></tr>
+      <tr><td>Max / Min value</td><td class="eq">k = f(−b/2a) — minimum if a &gt; 0, maximum if a &lt; 0</td></tr>
+      <tr><td>Transformations</td><td>h: shift left/right (opposite sign) · k: shift up/down · a: reflect + stretch</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <div class="sechead"><div class="num">🏆</div><div><h2>The 10-Question Challenge</h2><p class="objtag">One question per skill. Instant feedback + full solutions. No retakes needed — but you can reset anytime.</p></div></div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <span id="quizScore" style="font-weight:800;color:var(--primary-dk)">Score: 0 / 0 answered</span>
+      <button class="btn ghost" onclick="renderQuiz();document.getElementById('quiz').scrollIntoView()">↻ Reset Challenge</button>
+    </div>
+    <div class="bar"><div class="barfill" id="quizBar"></div></div>
+    <div id="quizBox"></div>
+    <div id="quizFinal" hidden></div>
+  </div>
+</section>
+
+</main>
+<footer>Section 3.1 · Quadratic Functions — Interactive Study Guide · Built for College Algebra · Work the sliders, trust the symmetry ✨</footer>
+
+<script>
+/* ================= HELPERS ================= */
+const $ = id => document.getElementById(id);
+const fmt = n => {
+  if (!isFinite(n)) return '—';
+  let s = Math.abs(n - Math.round(n)) < 1e-9 ? String(Math.round(n)) : String(Math.round(n*100)/100);
+  return s.replace('-', '−');
+};
+const sfmt = n => n === 0 ? '' : (n < 0 ? '− ' + fmt(-n) : '+ ' + fmt(n));
+
+function polyStr(a, b, c){
+  let s = (a === 1 ? '' : a === -1 ? '−' : fmt(a)) + 'x²';
+  if (b !== 0) s += (b < 0 ? ' − ' : ' + ') + (Math.abs(b) === 1 ? '' : fmt(Math.abs(b))) + 'x';
+  if (c !== 0) s += (c < 0 ? ' − ' : ' + ') + fmt(Math.abs(c));
+  return s;
+}
+function vfStr(a, h, k){
+  let s = (a === 1 ? '' : a === -1 ? '−' : fmt(a));
+  s += h === 0 ? 'x²' : '(x ' + (h > 0 ? '− ' + fmt(h) : '+ ' + fmt(-h)) + ')²';
+  if (k !== 0) s += (k > 0 ? ' + ' : ' − ') + fmt(Math.abs(k));
+  return s;
+}
+
+/* ================= PLOTTING ENGINE ================= */
+function basePlot(cv, xMin, xMax, yMin, yMax){
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth || 600, h = cv.clientHeight || 300;
+  cv.width = w * dpr; cv.height = h * dpr;
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const X = x => (x - xMin) / (xMax - xMin) * w;
+  const Y = y => h - (y - yMin) / (yMax - yMin) * h;
+  return {ctx, w, h, X, Y, xMin, xMax, yMin, yMax};
+}
+function drawGridAxes(P){
+  const {ctx, w, h, X, Y, xMin, xMax, yMin, yMax} = P;
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '11px Inter, sans-serif';
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = '#e9ebf5';
+  for (let gx = Math.ceil(xMin); gx <= xMax; gx++){ if (gx === 0) continue; ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), h); ctx.stroke(); }
+  for (let gy = Math.ceil(yMin); gy <= yMax; gy++){ if (gy === 0) continue; ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(w, Y(gy)); ctx.stroke(); }
+  ctx.strokeStyle = '#9aa1bd'; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(w, Y(0)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), h); ctx.stroke();
+  ctx.fillStyle = '#7b81a0';
+  for (let gx = Math.ceil(xMin); gx <= xMax; gx++){
+    if (gx === 0 || gx % 2 !== 0) continue;
+    if (Math.abs(X(gx) - X(0)) < 18) continue;
+    ctx.fillText(gx, X(gx) - 5, Y(0) + 14);
+  }
+  for (let gy = Math.ceil(yMin); gy <= yMax; gy++){
+    if (gy === 0 || gy % 2 !== 0) continue;
+    if (Math.abs(Y(gy) - Y(0)) < 12) continue;
+    ctx.fillText(gy, X(0) + 5, Y(gy) + 4);
+  }
+  ctx.fillText('0', X(0) + 5, Y(0) + 13);
+}
+function plotFn(P, fn, color, lw, dash){
+  lw = lw || 2.5; dash = dash || [];
+  const {ctx, xMin, xMax, X, Y} = P;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.setLineDash(dash); ctx.lineJoin = 'round';
+  ctx.beginPath();
+  const N = 340;
+  for (let i = 0; i <= N; i++){
+    const x = xMin + (xMax - xMin) * i / N, y = fn(x);
+    i === 0 ? ctx.moveTo(X(x), Y(y)) : ctx.lineTo(X(x), Y(y));
+  }
+  ctx.stroke(); ctx.restore();
+}
+function drawPt(P, x, y, color, label, dx, dy){
+  dx = dx === undefined ? 8 : dx; dy = dy === undefined ? -8 : dy;
+  const {ctx, X, Y} = P;
+  ctx.beginPath(); ctx.arc(X(x), Y(y), 5, 0, 7); ctx.fillStyle = color; ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+  if (label){ ctx.fillStyle = color; ctx.font = '700 11.5px Inter, sans-serif'; ctx.fillText(label, X(x) + dx, Y(y) + dy); }
+}
+function drawVL(P, x, color, label){
+  const {ctx, h, X} = P;
+  ctx.save(); ctx.strokeStyle = color; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(X(x), 0); ctx.lineTo(X(x), h); ctx.stroke(); ctx.restore();
+  if (label){ ctx.fillStyle = color; ctx.font = '700 11.5px Inter, sans-serif'; ctx.fillText(label, X(x) + 5, 16); }
+}
+
+/* ================= LAB 1 : TRANSFORMATIONS ================= */
+function updateT(){
+  const a = parseFloat($('ta').value), h = parseFloat($('th').value), k = parseFloat($('tk').value);
+  $('taOut').textContent = fmt(a); $('thOut').textContent = fmt(h); $('tkOut').textContent = fmt(k);
+  $('tEq').textContent = 'f(x) = ' + vfStr(a, h, k);
+  const widthTxt = Math.abs(a) > 1 ? 'vertical <b>stretch</b> → narrower than parent' :
+                   Math.abs(a) < 1 ? 'vertical <b>compression</b> → wider than parent' : 'same width as parent';
+  $('tInfo').innerHTML = 'Vertex <b>(' + fmt(h) + ', ' + fmt(k) + ')</b> · Axis <b>x = ' + fmt(h) + '</b> · ' +
+    (a > 0 ? 'opens <b>upward</b> (vertex = minimum)' : 'opens <b>downward</b> (vertex = maximum)') +
+    ' · |a| = ' + fmt(Math.abs(a)) + ' → ' + widthTxt;
+  const P = basePlot($('tCanvas'), -10, 10, -10, 10);
+  drawGridAxes(P);
+  plotFn(P, x => x*x, '#b9c0d9', 2, [7, 6]);
+  drawVL(P, h, '#f59e0b', 'x = ' + fmt(h));
+  plotFn(P, x => a*(x-h)*(x-h) + k, '#4f46e5', 3);
+  drawPt(P, h, k, '#e11d48', '(' + fmt(h) + ', ' + fmt(k) + ')');
+  drawPt(P, 0, a*h*h + k, '#059669', '(0, ' + fmt(a*h*h + k) + ')', 8, 18);
+}
+function setT(a, h, k){ $('ta').value = a; $('th').value = h; $('tk').value = k; updateT(); }
+['ta','th','tk'].forEach(id => $(id).addEventListener('input', updateT));
+
+/* ================= LAB 3 : GENERAL FORM LAB ================= */
+function setStat(id, t){ $(id).textContent = t; }
+function updateLab(){
+  const a = parseFloat($('la').value), b = parseFloat($('lb').value), c = parseFloat($('lc').value);
+  $('laOut').textContent = fmt(a); $('lbOut').textContent = fmt(b); $('lcOut').textContent = fmt(c);
+  const P = basePlot($('labCanvas'), -10, 10, -12, 12);
+  drawGridAxes(P);
+  if (a === 0){
+    $('labWarn').hidden = false;
+    plotFn(P, x => b*x + c, '#94a3b8', 2.5);
+    $('labEq').textContent = polyStr(0.0001,b,c).replace(/^.*?x²/,'0·x²'); $('labEq').textContent = 'not quadratic (a = 0)';
+    ['labVF','stDir','stVertex','stAxis','stYint','stXint','stDisc','stExt'].forEach(id => setStat(id, '—'));
+    $('labTable').innerHTML = '<tr><td colspan="3" style="padding:18px">a = 0 → linear, so no vertex, no symmetry table. Set a ≠ 0!</td></tr>';
+    $('tblNote').textContent = '';
+    return;
+  }
+  $('labWarn').hidden = true;
+  const vx = -b/(2*a), vy = a*vx*vx + b*vx + c, D = b*b - 4*a*c;
+  $('labEq').textContent = polyStr(a, b, c);
+  $('labVF').textContent = vfStr(a, vx, vy);
+  plotFn(P, x => a*x*x + b*x + c, '#4f46e5', 3);
+  drawVL(P, vx, '#f59e0b', 'x = ' + fmt(vx));
+  let rootsTxt;
+  if (D > 0){
+    const r1 = (-b - Math.sqrt(D))/(2*a), r2 = (-b + Math.sqrt(D))/(2*a);
+    const lo = Math.min(r1, r2), hi = Math.max(r1, r2);
+    drawPt(P, lo, 0, '#7c3aed', '(' + fmt(lo) + ', 0)', -14, 16);
+    drawPt(P, hi, 0, '#7c3aed', '(' + fmt(hi) + ', 0)', 8, 16);
+    rootsTxt = '(' + fmt(lo) + ', 0) and (' + fmt(hi) + ', 0)';
+  } else if (Math.abs(D) < 1e-9){
+    drawPt(P, vx, 0, '#7c3aed', '(' + fmt(vx) + ', 0)', 8, 16);
+    rootsTxt = '(' + fmt(vx) + ', 0) — one repeated root';
+  } else rootsTxt = 'None (Δ < 0)';
+  drawPt(P, 0, c, '#059669', '(0, ' + fmt(c) + ')', 8, c > vy ? 18 : -10);
+  drawPt(P, vx, vy, '#e11d48', 'V(' + fmt(vx) + ', ' + fmt(vy) + ')', 8, a > 0 ? 20 : -12);
+  setStat('stDir', a > 0 ? 'upward ∪ (a > 0)' : 'downward ∩ (a < 0)');
+  setStat('stVertex', '(' + fmt(vx) + ', ' + fmt(vy) + ')');
+  setStat('stAxis', 'x = ' + fmt(vx));
+  setStat('stYint', '(0, ' + fmt(c) + ')');
+  setStat('stXint', rootsTxt);
+  setStat('stDisc', fmt(D) + (D > 0 ? ' → two x-ints' : Math.abs(D) < 1e-9 ? ' → one x-int' : ' → no x-ints'));
+  setStat('stExt', (a > 0 ? 'Minimum value y = ' : 'Maximum value y = ') + fmt(vy));
+  buildTable(a, b, c, vx);
+}
+function buildTable(a, b, c, vx){
+  const step = parseFloat($('labStep').value);
+  const f = x => a*x*x + b*x + c;
+  let html = '<tr><th>x</th><th>f(x)</th><th>point</th></tr>';
+  for (let i = -4; i <= 4; i++){
+    const x = vx + i*step, y = f(x);
+    const cls = i === 0 ? 'vxrow' : (Math.abs(i) % 2 === 1 ? 'pairA' : 'pairB');
+    html += '<tr class="' + cls + '"><td>' + fmt(x) + '</td><td>' + fmt(y) + '</td><td>(' + fmt(x) + ', ' + fmt(y) + ')</td></tr>';
+  }
+  $('labTable').innerHTML = html;
+  $('tblNote').textContent = 'Rows the same distance from x = ' + fmt(vx) + ' share identical y-values — that is the axis of symmetry in action.';
+}
+function setLab(a, b, c){ $('la').value = a; $('lb').value = b; $('lc').value = c; updateLab(); }
+function loadLab(a, b, c){ setLab(a, b, c); document.getElementById('s6').scrollIntoView({behavior: 'smooth'}); }
+['la','lb','lc'].forEach(id => $(id).addEventListener('input', updateLab));
+
+/* ================= LAB 2 : COMPLETING THE SQUARE ================= */
+let ctsArr = [], ctsIdx = 0;
+function buildCTS(){
+  const num = (el, d) => { const v = parseFloat($(el).value); return isNaN(v) ? d : v; };
+  let a = num('ctsA', 1), b = num('ctsB', 0), c = num('ctsC', 0);
+  if (a === 0) a = 1;
+  const p = b/a, m = b/(2*a), m2 = m*m, k = c - a*m2;
+  const apref = a === 1 ? '' : (a === -1 ? '−' : fmt(a));
+  const sq = m === 0 ? 'x²' : '(x ' + sfmt(m) + ')²';
+  ctsArr = [
+    {t: 'Step 1 · Start with the general form.',
+     e: 'f(x) = ' + polyStr(a, b, c)},
+    {t: 'Step 2 · Factor ' + fmt(a) + ' out of the two x-terms; leave c outside.',
+     e: 'f(x) = ' + apref + '(' + polyStr(1, p, 0) + ') ' + sfmt(c)},
+    {t: 'Step 3 · Half of ' + fmt(p) + ' is ' + fmt(m) + '; square it: (' + fmt(m) + ')² = ' + fmt(m2) + '. Add and subtract ' + fmt(m2) + ' inside (adds zero — legal!).',
+     e: 'f(x) = ' + apref + '(' + polyStr(1, p, 0) + ' ' + sfmt(m2) + ' ' + sfmt(-m2) + ') ' + sfmt(c)},
+    {t: 'Step 4 · The trinomial is a perfect square — factor it.',
+     e: 'f(x) = ' + apref + '(' + sq + ' ' + sfmt(-m2) + ') ' + sfmt(c)},
+    {t: 'Step 5 · Distribute ' + fmt(a) + ' to the ' + fmt(-m2) + ' term: ' + fmt(a) + '·(' + fmt(-m2) + ') = ' + fmt(-a*m2) + '.',
+     e: 'f(x) = ' + apref + sq + ' ' + sfmt(-a*m2) + ' ' + sfmt(c)},
+    {t: 'Step 6 · Combine constants → STANDARD FORM! Vertex = (' + fmt(-m) + ', ' + fmt(k) + '), axis x = ' + fmt(-m) + '. ' + (a > 0 ? 'a > 0 → opens up; k is the minimum.' : 'a < 0 → opens down; k is the maximum.'),
+     e: 'f(x) = ' + apref + sq + (k !== 0 ? ' ' + sfmt(k) : '') + '   ✓'}
+  ];
+  ctsIdx = 0; renderCTS();
+}
+function renderCTS(){
+  const s = ctsArr[ctsIdx];
+  $('ctsTitle').textContent = s.t;
+  $('ctsEq').textContent = s.e;
+  $('ctsPrev').disabled = ctsIdx === 0;
+  $('ctsNext').disabled = ctsIdx === ctsArr.length - 1;
+  $('ctsCount').textContent = 'Step ' + (ctsIdx + 1) + ' of ' + ctsArr.length;
+  $('ctsDots').innerHTML = ctsArr.map((_, i) => '<span class="dot' + (i === ctsIdx ? ' on' : '') + '"></span>').join('');
+}
+function setCTS(a, b, c){ $('ctsA').value = a; $('ctsB').value = b; $('ctsC').value = c; buildCTS(); }
+
+/* ================= LAB 4 : FENCE OPTIMIZATION ================= */
+function updateFence(){
+  const x = parseFloat($('fx').value), len = 200 - 2*x, area = x*len;
+  $('fxOut').textContent = fmt(x);
+  $('fDims').textContent = 'width ' + fmt(x) + ' ft × length ' + fmt(len) + ' ft';
+  $('fArea').textContent = fmt(area) + ' ft²';
+  const P = basePlot($('fCanvas'), -8, 108, -400, 5600);
+  const {ctx, w, h, X, Y} = P;
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '11px Inter, sans-serif';
+  ctx.strokeStyle = '#e9ebf5'; ctx.lineWidth = 1;
+  for (let gx = 0; gx <= 100; gx += 20){ ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), h); ctx.stroke(); }
+  for (let gy = 0; gy <= 5000; gy += 1000){ ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(w, Y(gy)); ctx.stroke(); }
+  ctx.strokeStyle = '#9aa1bd'; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), h); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(w, Y(0)); ctx.stroke();
+  ctx.fillStyle = '#7b81a0';
+  for (let gx = 0; gx <= 100; gx += 20) ctx.fillText(gx, X(gx) - 5, Y(0) - 6);
+  for (let gy = 1000; gy <= 5000; gy += 1000) ctx.fillText((gy/1000) + 'k', 4, Y(gy) + 4);
+  ctx.fillText('Area A(x) = −2x² + 200x', X(55), Y(4600));
+  plotFn(P, t => t*(200 - 2*t), '#4f46e5', 3);
+  drawPt(P, 50, 5000, '#e11d48', 'MAX (50, 5000)', -120, -12);
+  drawPt(P, x, area, '#f59e0b', '(' + fmt(x) + ', ' + fmt(area) + ')', 10, 18);
+}
+$('fx').addEventListener('input', updateFence);
+
+/* ================= STATIC MINI GRAPHS ================= */
+function drawGallery(){
+  const P = basePlot($('galleryCanvas'), -6, 6, -3, 9);
+  drawGridAxes(P);
+  plotFn(P, x => x*x, '#4f46e5', 2.5);
+  plotFn(P, x => 0.4*x*x, '#0d9488', 2.5);
+  plotFn(P, x => -x*x + 4, '#e11d48', 2.5);
+  const {ctx, X, Y} = P;
+  ctx.font = '700 12px Inter, sans-serif';
+  ctx.fillStyle = '#4f46e5'; ctx.fillText('y = x²', X(2.35) + 6, Y(5.5));
+  ctx.fillStyle = '#0d9488'; ctx.fillText('y = 0.4x²', X(3.4), Y(4.6) + 14);
+  ctx.fillStyle = '#e11d48'; ctx.fillText('y = −x² + 4', X(-2.2) - 76, Y(-0.84));
+}
+function miniDisc(cv, a, b, c, roots){
+  const P = basePlot($(cv), -6, 6, -5, 9);
+  drawGridAxes(P);
+  plotFn(P, x => a*x*x + b*x + c, '#4f46e5', 2.5);
+  roots.forEach(r => drawPt(P, r, 0, '#e11d48'));
+}
+function drawDisc(){
+  miniDisc('dC1', 1, 0, -4, [-2, 2]);
+  miniDisc('dC2', 1, -4, 4, [2]);
+  miniDisc('dC3', 1, 0, 3, []);
+}
+
+/* ================= QUIZ ================= */
+const QUIZ = [
+  {q: 'Which of the following is a quadratic function?',
+   o: ['f(x) = 4x − 9', 'f(x) = x³ − 2x² + 1', 'f(x) = −3x² + 7x − 2', 'f(x) = 2x + 5x⁻¹'], a: 2,
+   e: 'A quadratic has the form ax² + bx + c with a ≠ 0 — the highest power of x must be exactly 2. Only −3x² + 7x − 2 qualifies (a = −3, b = 7, c = −2).'},
+  {q: 'For f(x) = −2(x − 3)² + 5, which statement is true?',
+   o: ['Vertex (−3, 5), opens upward', 'Vertex (3, 5), opens downward', 'Vertex (3, −5), opens upward', 'Vertex (−3, −2), opens downward'], a: 1,
+   e: 'Standard form a(x − h)² + k gives vertex (h, k) = (3, 5). Since a = −2 < 0, the parabola opens downward and 5 is its maximum value.'},
+  {q: 'To obtain g(x) = (x + 4)² − 1 from the parent f(x) = x², we:',
+   o: ['Shift right 4 and up 1', 'Shift left 4 and down 1', 'Shift left 4 and up 1', 'Shift right 4 and down 1'], a: 1,
+   e: '(x + 4)² means h = −4 → shift LEFT 4 (opposite of the sign). The −1 gives k = −1 → shift DOWN 1.'},
+  {q: 'The standard form of f(x) = x² + 8x + 10 is:',
+   o: ['(x + 4)² + 10', '(x + 4)² − 6', '(x − 4)² − 6', '(x + 8)² − 54'], a: 1,
+   e: 'Half of 8 is 4, so (x + 4)² = x² + 8x + 16. Therefore x² + 8x + 10 = (x + 4)² − 16 + 10 = (x + 4)² − 6.'},
+  {q: 'The vertex of f(x) = x² − 6x + 2 is:',
+   o: ['(−3, 29)', '(3, −7)', '(6, 2)', '(−6, 74)'], a: 1,
+   e: 'h = −b/(2a) = 6/2 = 3. Then k = f(3) = 9 − 18 + 2 = −7. Vertex: (3, −7).'},
+  {q: 'The axis of symmetry of f(x) = 2x² + 8x − 3 is:',
+   o: ['x = 2', 'x = −4', 'x = −2', 'x = 8'], a: 2,
+   e: 'x = −b/(2a) = −8/(2·2) = −8/4 = −2.'},
+  {q: 'The x-intercepts of f(x) = x² − 5x + 6 are:',
+   o: ['(2, 0) and (3, 0)', '(−2, 0) and (−3, 0)', '(1, 0) and (6, 0)', 'There are no x-intercepts'], a: 0,
+   e: 'Set 0 = x² − 5x + 6 = (x − 2)(x − 3), so x = 2 or x = 3. Check: Δ = 25 − 24 = 1 > 0 → two intercepts. ✔'},
+  {q: 'How many x-intercepts does f(x) = x² + 4x + 7 have?',
+   o: ['Two', 'One', 'None', 'Impossible to tell'], a: 2,
+   e: 'Δ = b² − 4ac = 16 − 28 = −12 < 0, so the parabola never touches the x-axis — zero x-intercepts.'},
+  {q: 'The function f(x) = −x² + 6x − 5 has:',
+   o: ['A minimum value of −5', 'A maximum value of 4', 'A maximum value of 9', 'A minimum value of 4'], a: 1,
+   e: 'a = −1 < 0 → maximum at the vertex. h = −6/(2·(−1)) = 3, and f(3) = −9 + 18 − 5 = 4. Maximum value is 4.'},
+  {q: 'A ball’s height is h(t) = −16t² + 64t + 80 feet, t seconds after being thrown. What is the MAXIMUM height the ball reaches?',
+   o: ['80 ft', '128 ft', '144 ft', '64 ft'], a: 2,
+   e: 'Time of max height: t = −64/(2·(−16)) = 2 s. Height: h(2) = −16(4) + 64(2) + 80 = −64 + 128 + 80 = 144 ft.'}
+];
+let qAnswered = 0, qScore = 0;
+function renderQuiz(){
+  qAnswered = 0; qScore = 0; updateScore();
+  $('quizFinal').hidden = true;
+  $('quizBox').innerHTML = QUIZ.map((Q, i) =>
+    '<div class="qcard" id="qcard' + i + '">' +
+      '<div class="qhead"><span class="qnum">Question ' + (i + 1) + ' / 10</span><span style="font-size:.75rem;color:var(--muted);font-weight:700">1 PT</span></div>' +
+      '<p class="qtext">' + Q.q + '</p>' +
+      '<div class="opts">' + Q.o.map((o, j) =>
+        '<button class="opt" data-q="' + i + '" data-o="' + j + '"><span class="letter">' + 'ABCD'[j] + '</span><span>' + o + '</span></button>').join('') + '</div>' +
+      '<div class="qexp" id="qexp' + i + '" hidden></div>' +
+    '</div>').join('');
+  document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', onOpt));
+}
+function onOpt(e){
+  const btn = e.currentTarget, i = +btn.dataset.q, o = +btn.dataset.o, Q = QUIZ[i];
+  const card = $('qcard' + i);
+  if (card.dataset.done) return;
+  card.dataset.done = '1'; qAnswered++;
+  const opts = card.querySelectorAll('.opt');
+  opts[Q.a].classList.add('right');
+  if (o === Q.a) qScore++; else btn.classList.add('wrong');
+  opts.forEach(b => b.disabled = true);
+  const ex = $('qexp' + i);
+  ex.innerHTML = (o === Q.a ? '✅ <b>Correct!</b> ' : '❌ <b>Not quite.</b> ') + Q.e;
+  ex.hidden = false;
+  updateScore();
+  if (qAnswered === QUIZ.length) finishQuiz();
+}
+function updateScore(){
+  $('quizScore').textContent = 'Score: ' + qScore + ' / ' + qAnswered + ' answered';
+  $('quizBar').style.width = (qAnswered / QUIZ.length * 100) + '%';
+}
+function finishQuiz(){
+  const f = $('quizFinal'); f.hidden = false;
+  let msg = scoreMsg(qScore);
+  f.innerHTML = '<div class="finalcard"><div class="big">' + qScore + ' / 10</div><p>' + msg + '</p>' +
+    '<button class="btn" style="background:#fff;color:var(--primary-dk)" onclick="renderQuiz()">↻ Retake the Challenge</button></div>';
+  f.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+function scoreMsg(s){
+  if (s === 10) return '🏆 Perfect score — you have officially mastered Section 3.1!';
+  if (s >= 8) return '🎉 Excellent work! Review the explanations on the ones you missed and you are exam-ready.';
+  if (s >= 6) return '👍 Solid effort. Revisit the sections tied to your misses (each question maps to one objective).';
+  if (s >= 4) return '📖 Keep going — replay the interactive labs above, then retake the challenge.';
+  return '🌱 Everyone starts somewhere. Reread Sections 1–4 slowly, drag every slider, and try again!';
+}
+
+/* ================= NAV HIGHLIGHT & RESIZE ================= */
+const secs = document.querySelectorAll('section.sec');
+const obs = new IntersectionObserver(es => {
+  es.forEach(en => {
+    if (en.isIntersecting)
+      document.querySelectorAll('nav.topnav a').forEach(a =>
+        a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  });
+}, {rootMargin: '-35% 0px -55% 0px'});
+secs.forEach(s => obs.observe(s));
+
+let rto;
+window.addEventListener('resize', () => {
+  clearTimeout(rto);
+  rto = setTimeout(() => { updateT(); updateLab(); drawGallery(); drawDisc(); updateFence(); }, 150);
+});
+
+/* ================= INIT ================= */
+document.addEventListener('DOMContentLoaded', () => {
+  updateT(); updateLab(); buildCTS(); drawGallery(); drawDisc(); updateFence(); renderQuiz();
+});
+</script>
+</body>
+</html>
